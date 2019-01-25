@@ -10,17 +10,33 @@ export interface ComingProps {
     ondel(id: number): void;
     rowNo: number;
 }
+export interface IState {
+    picker: null;
+  
+}
 
 
-const Content: React.SFC<ComingProps> = (props)=> {
-    let id = props.rowNo;
+class Content extends React.Component<ComingProps,IState> {
+    constructor(props){
+        super(props)
+        this.state = {
+            picker : null,
+        }
+    }
 
+    handlePicker=(month,id)=>{
+
+        this.props.smonth(month,id)
+        this.setState({picker: month})
+    }
+    render (){
+    let id = this.props.rowNo;
     return (
         <View style={styles.datecontainer} >
             <Picker
-                selectedValue={'jaaa'}
+                selectedValue={this.state.picker}
                 style={{ height: 25.0, width: 110 }}
-                onValueChange={(month, itemIndex) => { props.smonth(month,id) }}>
+                onValueChange={(month, itemIndex) => this.handlePicker(month,id)}>
                 <Picker.Item label="Jan" value="1" />
                 <Picker.Item label="February" value="2" />
                 <Picker.Item label="March" value="3" />
@@ -40,7 +56,7 @@ const Content: React.SFC<ComingProps> = (props)=> {
                     height: 25, width: 60,
                     marginLeft: 35,
                 }}
-                onChangeText={(unit) => { props.sunit(unit, id) }}
+                onChangeText={(unit) => { this.props.sunit(unit, id) }}
 
             />
 
@@ -49,11 +65,12 @@ const Content: React.SFC<ComingProps> = (props)=> {
                     height: 25, width: 30,
                     marginLeft: 60
                 }}
-                onChangeText={(budget) => { props.sbudget(budget, id) }}
+                onChangeText={(budget) => { this.props.sbudget(budget, id) }}
             />
-            <Icon name='trash' size={20} style={{ marginLeft: 15 }} onPress={() => { props.ondel(id) }} ></Icon>
+            <Icon name='trash' size={20} style={{ marginLeft: 15 }} onPress={() => { this.props.ondel(id) }} ></Icon>
         </View >
     )
+            }
 }
 const styles = StyleSheet.create({
     datecontainer: {

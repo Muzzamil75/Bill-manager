@@ -28,9 +28,6 @@ class Form extends React.Component<any,any> {
         this.setState({ email: email })
         alert("Submitted");
 
-        // if (this.state.name)
-        //console.log (this.state.name);
-        //<Home user={"muzamil"}/>
     }
     render() {
         return (

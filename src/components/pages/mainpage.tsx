@@ -7,8 +7,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Content from '../addContent'
 
 export interface IState {
-    site: [];
-    device: [];
+    site: null;
+    device: null;
     countrows: number;
     value:null
 
@@ -32,8 +32,9 @@ class MainPage extends React.Component<any, IState> {
             ],
             value :null,
             countrows: 1,
-            site: [],
-            device: [],
+            site: null,
+            device: null,
+
         }
     }
     //working
@@ -66,6 +67,18 @@ class MainPage extends React.Component<any, IState> {
         this.setState({ fields: this.state.fields })
     }
 
+
+    handlPickerSite = (itemValue)=>{
+
+        this.setState({ site: itemValue })
+
+    }
+    handlPickerDevice = (itemValue)=>{
+
+        this.setState({ device: itemValue })
+
+    }
+
     render() {
 
         return (
@@ -96,10 +109,11 @@ class MainPage extends React.Component<any, IState> {
                     <View style={styles.pickercss}>
                         <Icon name='question' size={25} />
                         <Picker
-                            selectedValue={this.state.value}
+                            selectedValue={this.state.site}
                             style={{ height: 20, width: 315 }}
-                            onValueChange={(itemValue, itemIndex) => this.setState({ site: itemValue })}>
+                            onValueChange={(itemValue, itemIndex) => this.handlPickerSite(itemValue)}>
                             <Picker.Item label="Bedroom" value="bedroom site" />
+                            <Picker.Item label="Room" value="Room site" />
                             <Picker.Item label="Lounge" value="lounge site" />
                         </Picker>
 
@@ -112,11 +126,12 @@ class MainPage extends React.Component<any, IState> {
                     <View style={styles.pickercss}>
                         <Icon name='wifi' size={25} />
                         <Picker
-                            selectedValue={this.state.value}
+                            selectedValue={this.state.device}
                             style={{ height: 20, width: 300 }}
-                            onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
+                            onValueChange={(itemValue, itemIndex) => this.handlPickerDevice(itemValue)}>
                             <Picker.Item label="Lounge Ac" value="L Ac" />
                             <Picker.Item label="Corridor Ac" value="C Ac" />
+                            <Picker.Item label="Room Ac" value="R Ac" />
                         </Picker>
                     </View>
 

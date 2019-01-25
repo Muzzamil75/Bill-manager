@@ -21,11 +21,12 @@ export interface IProps {
 const styles= StyleSheet.create({
     buttons : {
         height : 35,
-        width : 180,
+        width : 230,
         marginTop:90,
         flexDirection: 'row',
         justifyContent : 'space-between',
-        marginLeft:90,
+        marginLeft:80,
+        //backgroundColor:"blue",
     }
 });
 

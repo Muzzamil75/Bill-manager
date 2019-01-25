@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import { NativeRouter, Route, Switch } from 'react-router-native';
-import MainPage from './storybook/stories/components/pages/mainpage';
-import ViewCards from './storybook/stories/components/pages/viewcards';
+import MainPage from './src/components/pages/mainpage';
+import ViewCards from './src/components/pages/viewcards';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
-import Home from './storybook/stories/components/pages/home';
-import Form from  './storybook/stories/components/pages/form';
+import Home from './src/components/pages/home';
+import Form from  './src/components/pages/form';
 
 const client = new ApolloClient({
     uri: 'https://api-euwest.graphcms.com/v1/cjqxm640z059401hq78m8s8v0/master'

@@ -30,16 +30,12 @@ const Fetch = () => (
           return ( <Text>No data found !</Text>)
 
          }
-            return data.bills.map(({ name, site, month, asset, unitrate, billLimit }) => (
+            return data.bills.map(   ({ name, site, month, asset, unitrate, billLimit })  => (
           <Cards name={name} month={month} asset={asset} site={site} unitrate={unitrate} billLimit={billLimit} />
-        ));
-          
+        ),i=>{});
       }}
-  
   </Query>
-
-)
-;
+);
 
 const styles = StyleSheet.create({
   container: {

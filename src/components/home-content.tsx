@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { View,StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View,StyleSheet,Image } from 'react-native';
 
 const Content = () => {
     return (
         <View style={styles.img}>
-           <Icon name='hotel' size={100} backgroundColor={'white'}/>
-
+         <Image source={require('./assets/a.png')} />
         </View>
     );
 }

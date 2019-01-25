@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default Main;
 ReactDom.render(<Main />, document.getElementById("root"));
 
