@@ -1,42 +1,92 @@
 
 import * as React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-export interface IProps {
-    name? : string;
-    month? :number;
-    asset?: number;
-    unitrate? : number;
-    budget? : string;
-    site? : number;
-    billLimit? :number;
-  
-  };
+export interface CardProps {
+    name: string;
+    month: number;
+    asset: number;
+    unitrate: number;
+    budget?: string;
+    site: number;
+    billLimit: number;
 
- const Cards:React.SFC<IProps> = props => {
+};
+
+const Cards: React.SFC<CardProps> = props => {
     return (
-        <View style={{ height: 170, width: 150, backgroundColor: 'blue', marginTop: 30 }}>
+        <View style={styles.wrapperView}>
 
-            <View style={{ backgroundColor: 'lightblue', height: 20 }}>
-                <Text style={{ textAlign:'center' }}>{props.name}</Text>
+            {/* Card upper  */}
+
+            <View style={{ flex: 1 }}>
+                <Text style={styles.consumed}>Total Consumed</Text>
+
+                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <Text style={styles.billLimit}> Rs.{props.billLimit}</Text>
+                    <Icon style={styles.billLimitIcon} name='arrow-up' size={21} marginLeft={20} />
+                </View>
+
             </View>
 
-            <View style={{ marginTop:20, height: 20,marginLeft:35, width:70 }}>
-                <Text style={{ textAlign:'center' ,color:'white' }}>Asset : {props.asset}</Text>
-            </View>
+            <View style={{ flex: 1 }} />
+            <View style={{ flex: 1 }} />
+            <View style={{ flex: 1 }} />
 
-            <View style={{ marginTop:20, height: 20 ,marginLeft:35,width:80  }}>
-                <Text style={{ textAlign:'center',color:'white'   }}>Unitrate : {props.unitrate}</Text>
-            </View>
+            {/* Card Bottom */}
 
-            <View style={{ marginTop:20, width:100 ,marginLeft:35, height: 20}}>
-                <Text style={{ textAlign:'center',color:'white'  }}>Bill-Limit : {props.billLimit}</Text>
+            <View style={styles.cardBottom}>
+                <Text style={styles.name}> {props.name}</Text>
+                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <Icon style={{ color: 'white', marginLeft: 10}} name='calendar' size={15} />
+                    <Text style={{ marginLeft: 5, color: '#0099ff' }}>January to March</Text>
+                </View>
             </View>
-
 
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    wrapperView: {
+        height: 200,
+        width: 150,
+        backgroundColor: '#0099ff',
+        marginTop: 10,
+        borderRadius: 8
+    },
+    billLimit: {
+        marginLeft: 10,
+        fontWeight: 'bold',
+        color: 'white',
+        fontSize: 18,
+        alignSelf: 'flex-start'
+    },
+    consumed: {
+        alignSelf: 'flex-start',
+        color: 'white',
+        marginLeft: 10,
+        marginTop: 8
+    },
+    cardBottom: {
+        flex: 2,
+        marginTop: 15,
+        backgroundColor: '#b3e0ff',
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8
+    },
+    name: {
+        marginLeft: 27,
+        color: '#0099ff',
+        fontWeight: 'bold',
+        marginTop: 5,
+        fontSize: 16,
+    },
+    billLimitIcon: {
+        color: 'white', marginLeft: 5
+    }
+})
 
 export default Cards;
 

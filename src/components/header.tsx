@@ -1,31 +1,52 @@
 import * as React from 'react';
+import { withRouter } from 'react-router-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {StyleSheet , View,Image,Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
-export interface IProps
-{
-    headerText : string;
+export interface HeaderProps {
+    headerText: string;
+    type: string
+    history?: any
 }
-const Header:React.SFC<IProps> = (props) =>
-{
-        return (           
-            <View style={styles.header}>
-              <Icon style = {{alignItems:'center',marginLeft:20,marginTop:22,color:'white' }}name = 'bars'  size = {21} marginTop ={60} marginLeft={20} />
-               <Text style={{fontSize:20,color:'white',marginLeft:20,marginTop:20}}>{props.headerText}</Text>    
-                      
-            </View>
-      );
-    
+const Header: React.SFC<HeaderProps> = (props) => {
+
+    return (
+        <View style={styles.header}>
+
+            {
+                props.type == 'createbill' ?
+                    <Icon style={styles.iconStyle} name='arrow-left' size={21} marginTop={60} marginLeft={20} onPress={() => props.history.push("/")} />
+                    :
+                    <Icon style={styles.iconStyle} name='bars' size={21} marginTop={60} marginLeft={20} />
+            }
+
+            <Text style={styles.text}>{props.headerText}</Text>
+
+        </View>
+    );
+
 }
 
-const styles= StyleSheet.create({
-    header : {
-    flexDirection :'row',
-        justifyContent:'flex-start',
-        height : 70,
-        width:360,
-        backgroundColor : '#4286f4',
+const styles = StyleSheet.create({
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        height: 55,
+        width: 360,
+        backgroundColor: '#0099ff',
+    },
+    iconStyle: {
+        alignItems: 'center',
+        marginLeft: 20,
+        marginTop: 20,
+        color: 'white'
+    },
+    text: {
+        fontSize: 20,
+        color: 'white',
+        marginLeft: 22,
+        marginTop: 18
     }
 });
-export default Header;
+export default withRouter(Header);
